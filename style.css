@@ -1,0 +1,110 @@
+body {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+header {
+    text-align: center;
+}
+
+header h2 {
+    font-size: 16px;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+main #info {
+    margin: 15px;
+}
+
+main #info h3 {
+    text-align: center;
+    font-size: 16px;
+}
+
+main #info p {
+    text-align: center;
+    font-size: 14px;
+}
+
+#tabuleiro {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 250px;
+    height: 130px;
+    background-color: rgb(194, 194, 194);
+    padding: 5px;
+    border-radius: 5px;
+}
+
+#tabuleiro .coluna {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 5px;
+    background-color: white;
+    height: 122px;
+    width: 21px;
+}
+
+#discosInicio {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 100px;
+    padding: 10px;
+    justify-content: space-between;
+}
+
+#discoPlayer1 {
+    border-radius: 20px;
+    background-color: rgb(51, 158, 219);
+    border: 2px solid rgb(19, 33, 163);
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+}
+
+#discoPlayer2 {
+    border-radius: 20px;
+    background-color: rgb(255, 150, 51);
+    border: 2px solid rgb(173, 69, 0);
+    min-width: 20px;
+    min-height: 20px;
+    max-width: 20px;
+    max-height: 20px;
+}
+
+aside {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 110px;
+    padding: 5px;
+    margin: 15px;
+    background-color: rgb(194, 194, 194);
+    border-radius: 5px;
+}
+
+aside button {
+    height: 60px;
+    width: 100px;
+    border-radius: 5px;
+    background-color: white;
+    border: 2px solid gray;
+}
+
+footer div {
+    font-size: 8px;
+    text-align: center;
+}
