@@ -38,7 +38,7 @@ main #info p {
     justify-content: space-between;
     align-items: center;
     width: 250px;
-    height: 130px;
+    height: 155px;
     background-color: rgb(194, 194, 194);
     padding: 5px;
     border-radius: 5px;
@@ -46,13 +46,14 @@ main #info p {
 
 #tabuleiro .coluna {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    flex-direction: column-reverse;
+    justify-content: flex-start;
     align-items: center;
     padding: 5px;
     background-color: white;
-    height: 122px;
+    height: 145px;
     width: 21px;
+    cursor: pointer;
 }
 
 #discosInicio {
@@ -65,7 +66,7 @@ main #info p {
     justify-content: space-between;
 }
 
-#discoPlayer1 {
+.jogador1 {
     border-radius: 20px;
     background-color: rgb(51, 158, 219);
     border: 2px solid rgb(19, 33, 163);
@@ -75,7 +76,7 @@ main #info p {
     max-height: 20px;
 }
 
-#discoPlayer2 {
+.jogador2 {
     border-radius: 20px;
     background-color: rgb(255, 150, 51);
     border: 2px solid rgb(173, 69, 0);
