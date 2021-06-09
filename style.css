@@ -56,6 +56,11 @@ main #info p {
     cursor: pointer;
 }
 
+#tabuleiro .boxDisco {
+    width: inherit;
+    height: 21px;
+}
+
 #discosInicio {
     display: flex;
     flex-direction: column;
