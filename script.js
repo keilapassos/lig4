@@ -40,7 +40,8 @@ botaoReset.addEventListener('click', function() {
             filhosColuna[j].innerText = "";
         }
     }
-
+    iniciaJogador1.innerText = "Jogador A"
+    iniciaJogador2.innerText = "Jogador B"
     tabuleiroArray = [
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0],
@@ -50,56 +51,55 @@ botaoReset.addEventListener('click', function() {
         [0,0,0,0,0,0,0]
         ]
 })
-
 // Alternar entre jogadores (cores)
 function sortearJogador() {
-    if(Math.floor(Math.random() * 2)==0) {
-        iniciaJogador1.innerText = "Jogador A começa!"
-        iniciaJogador2.innerText = "Jogador B"
-        return "1" 
-    }
-    else if(Math.floor(Math.random() * 2)!=0) {
-        iniciaJogador1.innerText = "Jogador A"
-        iniciaJogador2.innerText = "Jogador B começa!"
-        return "2"
-    }
+    let numero_aletorio = Math.ceil(Math.random()*2);// ou 1 ou 2 nunca 0
+    return numero_aletorio;
 }
-console.log(sortearJogador())
-let jogadorAtual = 1
-
+let jogadorAtual = sortearJogador();
+const alterador =(param)=>{
+    if(param === 1) {
+    iniciaJogador1.innerText = "Jogador A começa!"
+    iniciaJogador2.innerText = "Jogador B"
+    }
+    if(param === 2) {
+    iniciaJogador1.innerText = "Jogador A"
+    iniciaJogador2.innerText = "Jogador B começa!"
+}
+}
+alterador(jogadorAtual);
 // Adicionar handler de clique nas colunas
 for (let i = 0; i < colunas.length; i++) {
-
     colunas[i].addEventListener('click', (event) => {
         let colunaAtual = event.currentTarget
         let colunaFilhos = colunaAtual.childNodes
-
         for (let j = 0; j < colunaFilhos.length; j++) {
-            if (jogadorAtual == 1 && colunaFilhos[j].childNodes.length === 0) {
+            if (jogadorAtual === 1 && colunaFilhos[j].childNodes.length === 0) {
                 let x = colunaFilhos[j].dataset.coluna
                 let y = colunaFilhos[j].dataset.linha
                 tabuleiroArray[y][x] = 1
                 let disco = document.createElement("div")
                 disco.classList.add("jogador1")
-                colunaFilhos[j].appendChild(disco)                
-                jogadorAtual = 2 
+                colunaFilhos[j].appendChild(disco)
+                jogadorAtual = 2;
+                alterador(jogadorAtual);
                 break;
             }
-            else if (jogadorAtual == 2 && colunaFilhos[j].childNodes.length === 0) {
+            else if (jogadorAtual === 2 && colunaFilhos[j].childNodes.length === 0) {
                 let x = colunaFilhos[j].dataset.coluna
                 let y = colunaFilhos[j].dataset.linha
                 tabuleiroArray[y][x] = 2
                 let disco = document.createElement("div")
                 disco.classList.add("jogador2")
-                colunaFilhos[j].appendChild(disco)               
-                jogadorAtual = 1
+                colunaFilhos[j].appendChild(disco)
+                jogadorAtual = 1;
+                alterador(jogadorAtual);
                 break;
-            }            
-        }  
-       // empate();
-        horizontal();
-        vertical(); 
-        diagonal(); 
+            }
+        }
+        horizontal()
+        vertical()
+        diagonal();
     })
 }
 
