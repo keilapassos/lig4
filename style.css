@@ -113,10 +113,10 @@ main #info p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 260px;
+    width: 270px;
     height: 155px;
     background-color: #f1cbb0;
-    padding: 5px;
+    padding: 14px 2px;
     border-radius: 5px;
 }
 
@@ -125,25 +125,29 @@ main #info p {
     flex-direction: column-reverse;
     justify-content: flex-start;
     align-items: center;
-    padding: 5px;
     background-color: white;
-    height: 145px;
-    width: 21px;
+    height: 170px;
+    width: 36px;
     cursor: pointer;
+    border-radius: 5px;
+    padding-bottom: 8px;
 }
 
 #tabuleiro .boxDisco {
     width: inherit;
     height: 25px;
+    margin: 0 0 2px 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 #discosInicio {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 20vw;
+    width: 30vw;
     height: 100px;
-    padding: 10px;
     justify-content: space-between;
 }
 
@@ -151,20 +155,20 @@ main #info p {
     border-radius: 20px;
     background-color: #66B9BF;
     border: 2px solid #006f80;
-    min-width: 20px;
-    min-height: 20px;
-    max-width: 20px;
-    max-height: 20px;
+    min-width: 23px;
+    min-height: 23px;
+    max-width: 23px;
+    max-height: 23px;
 }
 
 .jogador2 {
     border-radius: 20px;
     background-color: #eb8c48;
     border: 2px solid #E37222;
-    min-width: 20px;
-    min-height: 20px;
-    max-width: 20px;
-    max-height: 20px;
+    min-width: 23px;
+    min-height: 23px;
+    max-width: 23px;
+    max-height: 23px;
 }
 
 aside {
