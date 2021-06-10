@@ -12,6 +12,7 @@ let tabuleiroArray = [
     const jogador1 = document.getElementsByClassName("disco jogador1")
     const jogador2 = document.getElementsByClassName("disco jogador2")
     const botaoReset = document.getElementById("reset")
+    const botaoZerarPlacar = document.getElementById("resetPlacar")
     const colunas = document.getElementsByClassName("coluna")
     let discos = document.getElementsByClassName("boxDisco")
     const iniciaJogador1 = document.getElementById("start1")
@@ -25,13 +26,8 @@ let tabuleiroArray = [
     //Captura os elementos Referentes ao placar de cada jogador
     let placarLaranja = document.getElementById("ptsLaranja");
     let placarAzul = document.getElementById("ptsAzul");
-    
-    //Captura os elementos Referentes ao placar de cada jogador
-    
-    //Incrementadores do placar
     let ptsAzul = 0;
     let ptsLaranja = 0;
-    //Incrementadores do placar
     
     // // // // Cria divs nas colunas dinamicamente \\ \\ \\ \\
     for (let i=0; i < colunas.length; i++) {
@@ -67,7 +63,31 @@ let tabuleiroArray = [
     // // // // Adicionar função reset no botão \\ \\ \\ \\
     botaoReset.addEventListener('click', function() {
         jogoEmAndamento = true;
-    
+        let coluna;
+        let filhosColuna;
+        for (let i = 0; i < colunas.length; i++) {
+                coluna = colunas[i];// coluna 0
+                filhosColuna = coluna.childNodes;// array de filhos da coluna;
+            for(let j = 0 ; j < filhosColuna.length;j++){
+                filhosColuna[j].innerText = "";
+            }
+        }
+        // placarLaranja.innerText = "0";
+        // placarAzul.innerText= "0";
+        jogadorAtual = sortearJogador();
+        tabuleiroArray = [
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0],
+            [0,0,0,0,0,0,0]
+            ]
+    })
+
+    // // // // Adicionar função reset que limpa o placar \\ \\ \\ \\
+    botaoZerarPlacar.addEventListener('click', function() {
+        jogoEmAndamento = true;
         let coluna;
         let filhosColuna;
         for (let i = 0; i < colunas.length; i++) {
@@ -79,6 +99,8 @@ let tabuleiroArray = [
         }
         placarLaranja.innerText = "0";
         placarAzul.innerText= "0";
+        ptsAzul = 0
+        ptsLaranja = 0
         jogadorAtual = sortearJogador();
         tabuleiroArray = [
             [0,0,0,0,0,0,0],
