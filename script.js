@@ -125,56 +125,14 @@ const bordaX = tabuleiroArray[0].length - 3;
                     
                     if(item === 1){
                         //mensagem vitória
-                        //console.log('jogador 1 ganhou')
-                        
-                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
-
-                        let coluna;
-                        let filhosColuna;
-                        for (let i = 0; i < colunas.length; i++) {
-                                coluna = colunas[i];
-                                filhosColuna = coluna.childNodes;
-                            for(let j = 0 ; j < filhosColuna.length;j++){
-                                filhosColuna[j].innerText = "";
-                            }
-                        }
-
-                        tabuleiroArray = [
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0]
-                            ]
-
+                        console.log('jogador 1 ganhou')                        
+                        paraDeCriarDiscos()
                     }
 
                     else if(item === 2){
                         //mensagem vitória
-                        // console.log('jogador 2 ganhou')
-                        
-                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
-
-                        let coluna;
-                        let filhosColuna;
-                        for (let i = 0; i < colunas.length; i++) {
-                                coluna = colunas[i];
-                                filhosColuna = coluna.childNodes;
-                            for(let j = 0 ; j < filhosColuna.length;j++){
-                                filhosColuna[j].innerText = "";
-                            }
-                        }
-
-                        tabuleiroArray = [
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0]
-                            ]
-
+                        console.log('jogador 2 ganhou')
+                        paraDeCriarDiscos()
                     }
                 }
             }
@@ -204,55 +162,13 @@ const bordaY = tabuleiroArray.length - 3;
                     if(item === 1){
                         //mensagem vitória
                         console.log('jogador 1 ganhou');
-
-                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
-
-                        let coluna;
-                        let filhosColuna;
-                        for (let i = 0; i < colunas.length; i++) {
-                                coluna = colunas[i];
-                                filhosColuna = coluna.childNodes;
-                            for(let j = 0 ; j < filhosColuna.length;j++){
-                                filhosColuna[j].innerText = "";
-                            }
-                        }
-
-                        tabuleiroArray = [
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0]
-                            ]
-                        
+                        paraDeCriarDiscos()
                     }
 
                     else if(item === 2){
                         //mensagem vitória
                         console.log('jogador 2 ganhou')
-                        
-                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
-
-                        let coluna;
-                        let filhosColuna;
-                        for (let i = 0; i < colunas.length; i++) {
-                                coluna = colunas[i];
-                                filhosColuna = coluna.childNodes;
-                            for(let j = 0 ; j < filhosColuna.length;j++){
-                                filhosColuna[j].innerText = "";
-                            }
-                        }
-
-                        tabuleiroArray = [
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0],
-                            [0,0,0,0,0,0,0]
-                            ]
-                        
+                        paraDeCriarDiscos()
                     }                    
                 }
             }
@@ -287,10 +203,11 @@ for (let y = 0; y  <= 3; y ++) {
             if (item === tabuleiroArray[y+1][x+1] && item === tabuleiroArray[y+2][x+2] && item === tabuleiroArray[y+3][x+3]) {
                 if(item === 1){
                     console.log("O jogador 1 ganhou");
+                    paraDeCriarDiscos()
                     
                 }else{
                     console.log("O jogador 2 ganhou");
-                    
+                    paraDeCriarDiscos()
                 }
             }
             // chamar funcao empate
@@ -323,14 +240,21 @@ for (let y = 3; y < tabuleiroArray.length; y ++) {
             if (item === tabuleiroArray[y-1][x+1] && item === tabuleiroArray[y-2][x+2] && item === tabuleiroArray[y-3][x+3]) {
                 if(item === 1){
                     console.log("O jogador 1 ganhou");
+                    paraDeCriarDiscos()
                 }
                 if(item === 2){
                     console.log("O jogador 2 ganhou");
+                    paraDeCriarDiscos()
                 }
             }
         }
     }
  }
+}
+
+// testes para-de-criar-discos
+function paraDeCriarDiscos(){    
+    jogadorAtual = 0
 }
 
 
