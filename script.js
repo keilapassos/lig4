@@ -31,12 +31,24 @@ for (let i=0; i < colunas.length; i++) {
 
 // Adicionar função reset no botão
 botaoReset.addEventListener('click', function() {
-    for (let i=0; i<colunas.length; i++) {
-        for (let j=0; j<6; j++) {
-            colunas[i][j].innerHTML = ""
+    let coluna;
+    let filhosColuna;
+    for (let i = 0; i < colunas.length; i++) {
+            coluna = colunas[i];// coluna 0
+            filhosColuna = coluna.childNodes;// array de filhos da coluna;
+        for(let j = 0 ; j < filhosColuna.length;j++){
+            filhosColuna[j].innerText = "";
         }
-        
     }
+
+    tabuleiroArray = [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0]
+        ]
 })
 
 // Alternar entre jogadores (cores)
@@ -64,9 +76,9 @@ for (let i = 0; i < colunas.length; i++) {
 
         for (let j = 0; j < colunaFilhos.length; j++) {
             if (jogadorAtual == 1 && colunaFilhos[j].childNodes.length === 0) {
-                let colunaDiscoAtual = colunaFilhos[j].dataset.coluna
-                let linhaDiscoAtual = colunaFilhos[j].dataset.linha
-                tabuleiroArray[linhaDiscoAtual][colunaDiscoAtual] = 1
+                let x = colunaFilhos[j].dataset.coluna
+                let y = colunaFilhos[j].dataset.linha
+                tabuleiroArray[y][x] = 1
                 let disco = document.createElement("div")
                 disco.classList.add("jogador1")
                 colunaFilhos[j].appendChild(disco)
@@ -74,16 +86,18 @@ for (let i = 0; i < colunas.length; i++) {
                 break;
             }
             else if (jogadorAtual == 2 && colunaFilhos[j].childNodes.length === 0) {
-                let colunaDiscoAtual = colunaFilhos[j].dataset.coluna
-                let linhaDiscoAtual = colunaFilhos[j].dataset.linha
-                tabuleiroArray[linhaDiscoAtual][colunaDiscoAtual] = 2
+                let x = colunaFilhos[j].dataset.coluna
+                let y = colunaFilhos[j].dataset.linha
+                tabuleiroArray[y][x] = 2
                 let disco = document.createElement("div")
                 disco.classList.add("jogador2")
                 colunaFilhos[j].appendChild(disco)
                 jogadorAtual = 1
                 break;
             }            
-        }        
+        }  
+        horizontal()
+        vertical()      
     })
 }
 
@@ -91,12 +105,157 @@ for (let i = 0; i < colunas.length; i++) {
 
 const horizontal = () => {
     
+const bordaX = tabuleiroArray[0].length - 3;
+
+// passando por cada linha
+    for(let y = 0; y < tabuleiroArray.length; y++){
+
+        // passando por cada item
+        for(let x = 0; x < bordaX; x++) {
+            let item = tabuleiroArray[y][x];
+            
+            // checando se a célula está preenhida
+            if(item !== 0) {
+            
+                // checando se os próximos três itens tem o mesmo valor
+                if(item === tabuleiroArray[y][x+1] && item === tabuleiroArray[y][x+2] && item === tabuleiroArray[y][x+3] ) {
+                    
+                    if(item === 1){
+                        //mensagem vitória
+                        //console.log('jogador 1 ganhou')
+                        
+                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
+
+                        let coluna;
+                        let filhosColuna;
+                        for (let i = 0; i < colunas.length; i++) {
+                                coluna = colunas[i];
+                                filhosColuna = coluna.childNodes;
+                            for(let j = 0 ; j < filhosColuna.length;j++){
+                                filhosColuna[j].innerText = "";
+                            }
+                        }
+
+                        tabuleiroArray = [
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0]
+                            ]
+
+                    }
+
+                    else if(item === 2){
+                        //mensagem vitória
+                        // console.log('jogador 2 ganhou')
+                        
+                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
+
+                        let coluna;
+                        let filhosColuna;
+                        for (let i = 0; i < colunas.length; i++) {
+                                coluna = colunas[i];
+                                filhosColuna = coluna.childNodes;
+                            for(let j = 0 ; j < filhosColuna.length;j++){
+                                filhosColuna[j].innerText = "";
+                            }
+                        }
+
+                        tabuleiroArray = [
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0]
+                            ]
+
+                    }
+                }
+            }
+        }
+    }
 }
 
 // Verificação vertical
 
 const vertical = () => {
+
+const bordaY = tabuleiroArray.length - 3;
     
+// passando por cada linha  
+    for(let y = 0; y < bordaY; y++){
+
+        // passando por cada célula
+        for(let x = 0; x < tabuleiroArray[0].length; x++) {
+            let item = tabuleiroArray[y][x];
+        
+            // checando se a célula está preenchida
+            if(item !== 0) {
+                
+                // checando se os próximos três itens têm o mesmo valor
+                if(item === tabuleiroArray[y+1][x] && item === tabuleiroArray[y+2][x] && item === tabuleiroArray[y+3][x]) {
+                    
+                    if(item === 1){
+                        //mensagem vitória
+                        // console.log('jogador 1 ganhou')
+
+                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
+
+                        let coluna;
+                        let filhosColuna;
+                        for (let i = 0; i < colunas.length; i++) {
+                                coluna = colunas[i];
+                                filhosColuna = coluna.childNodes;
+                            for(let j = 0 ; j < filhosColuna.length;j++){
+                                filhosColuna[j].innerText = "";
+                            }
+                        }
+
+                        tabuleiroArray = [
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0]
+                            ]
+                        
+                    }
+
+                    else if(item === 2){
+                        //mensagem vitória
+                        // console.log('jogador 2 ganhou')
+                        
+                        // LIMPA DEPOIS DE SAIR UM GANHADOR:
+
+                        let coluna;
+                        let filhosColuna;
+                        for (let i = 0; i < colunas.length; i++) {
+                                coluna = colunas[i];
+                                filhosColuna = coluna.childNodes;
+                            for(let j = 0 ; j < filhosColuna.length;j++){
+                                filhosColuna[j].innerText = "";
+                            }
+                        }
+
+                        tabuleiroArray = [
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0],
+                            [0,0,0,0,0,0,0]
+                            ]
+                        
+                    }                    
+                }
+            }
+        }
+    }
+  
 }
 
 // Verificação diagonal
