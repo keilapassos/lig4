@@ -44,7 +44,8 @@ botaoReset.addEventListener('click', function() {
             filhosColuna[j].innerText = "";
         }
     }
-
+    iniciaJogador1.innerText = "Jogador A"
+    iniciaJogador2.innerText = "Jogador B"
     tabuleiroArray = [
         [0,0,0,0,0,0,0],
         [0,0,0,0,0,0,0],
@@ -57,57 +58,60 @@ botaoReset.addEventListener('click', function() {
 
 // Alternar entre jogadores (cores)
 function sortearJogador() {
-    if(Math.floor(Math.random() * 2)==0) {
-        iniciaJogador1.innerText = "Jogador A começa!"
-        iniciaJogador2.innerText = "Jogador B"
-        return "1" 
-    }
-    else if(Math.floor(Math.random() * 2)!=0) {
-        iniciaJogador1.innerText = "Jogador A"
-        iniciaJogador2.innerText = "Jogador B começa!"
-        return "2"
-    }
+    let numero_aletorio = Math.ceil(Math.random()*2);// ou 1 ou 2 nunca 0
+    return numero_aletorio;
 }
-console.log(sortearJogador())
-let jogadorAtual = 1
+let jogadorAtual = sortearJogador();
+const alterador =(param)=>{
+    if(param === 1) {
+    iniciaJogador1.innerText = "Jogador A começa!"
+    iniciaJogador2.innerText = "Jogador B"
+    }
+    if(param === 2) {
+    iniciaJogador1.innerText = "Jogador A"
+    iniciaJogador2.innerText = "Jogador B começa!"
+}
+}
+alterador(jogadorAtual);
+
 
 // Adicionar handler de clique nas colunas
-for (let i = 0; i < colunas.length; i++) {
-
-
+for (let i = 0; i < colunas.length; i++) {    
+        
     colunas[i].addEventListener('click', (event) => {
         let colunaAtual = event.currentTarget
         let colunaFilhos = colunaAtual.childNodes
 
         if(jogoEmAndamento === true){
-            
+
             for (let j = 0; j < colunaFilhos.length; j++) {
-                if (jogadorAtual == 1 && colunaFilhos[j].childNodes.length === 0) {
+                if (jogadorAtual === 1 && colunaFilhos[j].childNodes.length === 0) {
                     let x = colunaFilhos[j].dataset.coluna
                     let y = colunaFilhos[j].dataset.linha
                     tabuleiroArray[y][x] = 1
                     let disco = document.createElement("div")
                     disco.classList.add("jogador1")
-                    colunaFilhos[j].appendChild(disco)                
-                    jogadorAtual = 2 
+                    colunaFilhos[j].appendChild(disco)
+                    jogadorAtual = 2;
+                    alterador(jogadorAtual);
                     break;
                 }
-                else if (jogadorAtual == 2 && colunaFilhos[j].childNodes.length === 0) {
+                else if (jogadorAtual === 2 && colunaFilhos[j].childNodes.length === 0) {
                     let x = colunaFilhos[j].dataset.coluna
                     let y = colunaFilhos[j].dataset.linha
                     tabuleiroArray[y][x] = 2
                     let disco = document.createElement("div")
                     disco.classList.add("jogador2")
-                    colunaFilhos[j].appendChild(disco)               
-                    jogadorAtual = 1
+                    colunaFilhos[j].appendChild(disco)
+                    jogadorAtual = 1;
+                    alterador(jogadorAtual);
                     break;
-                }         
-            }  
-        // empate();
-            horizontal();
-            vertical(); 
-            diagonal(); 
-        }  
+                }
+            }
+            horizontal()
+            vertical()
+            diagonal();
+        }
     })
 }
 
@@ -122,12 +126,12 @@ const bordaX = tabuleiroArray[0].length - 3;
                 if(item === tabuleiroArray[y][x+1] && item === tabuleiroArray[y][x+2] && item === tabuleiroArray[y][x+3] ) {
                     if(item === 1){
                         console.log('jogador 1 ganhou')
-                        paraDeCriarDiscos()                        
+                        jogoEmAndamento = false;                       
                     }
 
                     else if(item === 2){
                         console.log('jogador 2 ganhou')
-                        paraDeCriarDiscos()
+                        jogoEmAndamento = false;
                     }
                 }
             }
@@ -146,12 +150,12 @@ const bordaY = tabuleiroArray.length - 3;
                 if(item === tabuleiroArray[y+1][x] && item === tabuleiroArray[y+2][x] && item === tabuleiroArray[y+3][x]) {
                     if(item === 1){
                         console.log('jogador 1 ganhou');
-                        paraDeCriarDiscos()      
+                        jogoEmAndamento = false;   
                     }
 
                     else if(item === 2){
                         console.log('jogador 2 ganhou')
-                        paraDeCriarDiscos()
+                        jogoEmAndamento = false;
                     }                    
                 }
             }
@@ -172,12 +176,10 @@ const diagonal = () => {
                 if (item === tabuleiroArray[y+1][x+1] && item === tabuleiroArray[y+2][x+2] && item === tabuleiroArray[y+3][x+3]) {
                     if(item === 1){
                         console.log("O jogador 1 ganhou");
-                        paraDeCriarDiscos()
-                        
+                        jogoEmAndamento = false;                        
                     }else{
                         console.log("O jogador 2 ganhou");
-                        paraDeCriarDiscos()
-                        
+                        jogoEmAndamento = false;                        
                     }
                 }
             }
@@ -193,11 +195,11 @@ for (let y = 3; y < tabuleiroArray.length; y ++) {
                 if (item === tabuleiroArray[y-1][x+1] && item === tabuleiroArray[y-2][x+2] && item === tabuleiroArray[y-3][x+3]) {
                     if(item === 1){
                         console.log("O jogador 1 ganhou");
-                        paraDeCriarDiscos()
+                        jogoEmAndamento = false;
                     }
                     if(item === 2){
                         console.log("O jogador 2 ganhou");
-                        paraDeCriarDiscos()
+                        jogoEmAndamento = false;
                     }
                 }
             }
@@ -219,33 +221,3 @@ for (let y = 3; y < tabuleiroArray.length; y ++) {
 //         }
 //     }
 // }
-
-// parar de criar discos quando sai ganhador
-function paraDeCriarDiscos(){  
-
-    // let coluna;
-    // let filhosColuna;
-    // for (let i = 0; i < colunas.length; i++) {
-    //         coluna = colunas[i];// coluna 0
-    //         filhosColuna = coluna.childNodes;// array de filhos da coluna;
-    //     for(let j = 0 ; j < filhosColuna.length;j++){
-    //         filhosColuna[j].innerText = "";
-    //     }
-    // }
-
-    // tabuleiroArray = [
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0],
-    //     [0,0,0,0,0,0,0]
-    //     ]
-
-    jogoEmAndamento = false;
-
-    //ideia do paulo:
-    // se jogo = true, continua o jogo
-    // se jogo tem vencedor, trocar pra false
-    //setar pra true de novo quando o jogo reiniciar
-}
