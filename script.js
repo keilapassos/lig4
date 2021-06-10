@@ -82,6 +82,7 @@ for (let i = 0; i < colunas.length; i++) {
                 let disco = document.createElement("div")
                 disco.classList.add("jogador1")
                 colunaFilhos[j].appendChild(disco)
+                
                 jogadorAtual = 2 
                 break;
             }
@@ -92,12 +93,14 @@ for (let i = 0; i < colunas.length; i++) {
                 let disco = document.createElement("div")
                 disco.classList.add("jogador2")
                 colunaFilhos[j].appendChild(disco)
+               
                 jogadorAtual = 1
                 break;
             }            
         }  
         horizontal()
-        vertical()      
+        vertical()    
+        diagonal();  
     })
 }
 
@@ -200,7 +203,7 @@ const bordaY = tabuleiroArray.length - 3;
                     
                     if(item === 1){
                         //mensagem vitória
-                        // console.log('jogador 1 ganhou')
+                        console.log('jogador 1 ganhou');
 
                         // LIMPA DEPOIS DE SAIR UM GANHADOR:
 
@@ -227,7 +230,7 @@ const bordaY = tabuleiroArray.length - 3;
 
                     else if(item === 2){
                         //mensagem vitória
-                        // console.log('jogador 2 ganhou')
+                        console.log('jogador 2 ganhou')
                         
                         // LIMPA DEPOIS DE SAIR UM GANHADOR:
 
@@ -262,4 +265,72 @@ const bordaY = tabuleiroArray.length - 3;
 
 const diagonal = () => {
     
+// DIAGONAL (DIREITA ABAIXO)
+// itere cada linha
+for (let y = 0; y  <= 3; y ++) {
+    // itere cada célula na linha
+    for (let x = 0; x <= 3; x++) {
+        let item  = tabuleiroArray[y][x];
+ /*
+   tabuleiroArray = [
+        [0,0,0,1,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0]
+        ]
+ */
+        // Checa apenas se a célula estiver preenchida
+        if (item !== 0) {
+            // Checa as próximas duas células para o mesmo valor
+            if (item === tabuleiroArray[y+1][x+1] && item === tabuleiroArray[y+2][x+2] && item === tabuleiroArray[y+3][x+3]) {
+                if(item === 1){
+                    console.log("O jogador 1 ganhou");
+                    
+                }else{
+                    console.log("O jogador 2 ganhou");
+                    
+                }
+            }
+            // chamar funcao empate
+        }
+    }
 }
+
+// Esquerda pra baixo
+for (let y = 3; y < tabuleiroArray.length; y ++) {
+
+    // itere cada célula em cada linha
+    for (let x = 0; x <= 3; x++) {
+        item = tabuleiroArray[y ][x];
+
+         /*
+   tabuleiroArray = [
+        [0,0,0,1,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0]
+        ]
+ */
+ 
+        // Checa somente se a célula está preenchida
+        if (item !== 0) {
+ 
+            // Checa as próximas duas células para o mesmo valor
+            if (item === tabuleiroArray[y-1][x+1] && item === tabuleiroArray[y-2][x+2] && item === tabuleiroArray[y-3][x+3]) {
+                if(item === 1){
+                    console.log("O jogador 1 ganhou");
+                }
+                if(item === 2){
+                    console.log("O jogador 2 ganhou");
+                }
+            }
+        }
+    }
+ }
+}
+
+
