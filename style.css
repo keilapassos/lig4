@@ -194,3 +194,24 @@ footer div {
     font-size: 8px;
     text-align: center;
 }
+
+
+div.pontos{
+    display: flex;
+    width: 99%;
+    justify-content: space-evenly;
+}
+
+div#azul{
+    display: flex;
+    justify-content: space-around;
+    width: 48%;
+    font-weight: bold;
+}
+
+div#laranja{
+    display: flex;
+    width: 46%;
+    justify-content: space-around;
+    font-weight: bold;
+}

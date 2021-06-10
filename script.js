@@ -18,6 +18,17 @@ const iniciaJogador1 = document.getElementById("start1")
 const iniciaJogador2 = document.getElementById("start2")
 let jogoEmAndamento = true;
 
+//Captura os elementos Referentes ao placar de cada jogador
+let placarLaranja = document.getElementById("ptsLaranja");
+let placarAzul = document.getElementById("ptsAzul");
+
+//Captura os elementos Referentes ao placar de cada jogador
+
+//Incrementadores do placar
+let ptsAzul = 0;
+let ptsLaranja = 0;
+//Incrementadores do placar
+
 // // // // Cria divs nas colunas dinamicamente \\ \\ \\ \\
 for (let i=0; i < colunas.length; i++) {
     let coluna = colunas[i]
@@ -62,6 +73,8 @@ botaoReset.addEventListener('click', function() {
             filhosColuna[j].innerText = "";
         }
     }
+    placarLaranja.innerText = "0";
+    placarAzul.innerText= "0";
     jogadorAtual = sortearJogador();
     tabuleiroArray = [
         [0,0,0,0,0,0,0],
@@ -125,12 +138,16 @@ const bordaX = tabuleiroArray[0].length - 3;
                 if(item === tabuleiroArray[y][x+1] && item === tabuleiroArray[y][x+2] && item === tabuleiroArray[y][x+3] ) {
                     if(item === 1){
                         console.log('jogador 1 ganhou')
-                        jogoEmAndamento = false;                       
+                        jogoEmAndamento = false;   
+                        ptsAzul++;
+                        placarAzul.innerText = ptsAzul;                    
                     }
 
                     else if(item === 2){
                         console.log('jogador 2 ganhou')
                         jogoEmAndamento = false;
+                        ptsLaranja++;
+                        placarLaranja.innerText = ptsLaranja;   
                     }
                 }
             }
@@ -150,11 +167,15 @@ const bordaY = tabuleiroArray.length - 3;
                     if(item === 1){
                         console.log('jogador 1 ganhou');
                         jogoEmAndamento = false;   
+                        ptsAzul++;
+                        placarAzul.innerText = ptsAzul;  
                     }
 
                     else if(item === 2){
                         console.log('jogador 2 ganhou')
                         jogoEmAndamento = false;
+                        ptsLaranja++;
+                        placarLaranja.innerText = ptsLaranja;  
                     }                    
                 }
             }
@@ -173,10 +194,14 @@ const diagonal = () => { //Diagonal ascendente
                 if (item === tabuleiroArray[y+1][x+1] && item === tabuleiroArray[y+2][x+2] && item === tabuleiroArray[y+3][x+3]) {
                     if(item === 1){
                         console.log("O jogador 1 ganhou");
-                        jogoEmAndamento = false;                        
+                        jogoEmAndamento = false;       
+                        ptsAzul++;
+                        placarAzul.innerText = ptsAzul;                   
                     }else{
                         console.log("O jogador 2 ganhou");
-                        jogoEmAndamento = false;                        
+                        jogoEmAndamento = false;    
+                        ptsLaranja++;
+                        placarLaranja.innerText = ptsLaranja;                      
                     }
                 }
             }
@@ -191,10 +216,14 @@ const diagonal = () => { //Diagonal ascendente
                     if(item === 1){
                         console.log("O jogador 1 ganhou");
                         jogoEmAndamento = false;
+                        ptsAzul++;
+                        placarAzul.innerText = ptsAzul;  
                     }
                     if(item === 2){
                         console.log("O jogador 2 ganhou");
                         jogoEmAndamento = false;
+                        ptsLaranja++;
+                        placarLaranja.innerText = ptsLaranja;  
                     }
                 }
             }
