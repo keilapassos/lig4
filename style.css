@@ -239,10 +239,6 @@ footer div {
     cursor: pointer;
 }
 
-#alertBox #textBox {
-
-}
-
 #alertBox #textBox #titleBox {
     text-align: center;
     font-family: "Bungee", sans-serif;
