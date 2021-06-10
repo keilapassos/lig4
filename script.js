@@ -1,3 +1,5 @@
+// // // // VARIÁVEIS \\ \\ \\ \\
+
 let tabuleiroArray = [
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0],
@@ -6,7 +8,6 @@ let tabuleiroArray = [
 [0,0,0,0,0,0,0],
 [0,0,0,0,0,0,0]
 ]
-
 const tabuleiro = document.getElementById("tabuleiro")
 const jogador1 = document.getElementsByClassName("disco jogador1")
 const jogador2 = document.getElementsByClassName("disco jogador2")
@@ -17,8 +18,7 @@ const iniciaJogador1 = document.getElementById("start1")
 const iniciaJogador2 = document.getElementById("start2")
 let jogoEmAndamento = true;
 
-
-// Criar divs nas colunas dinamicamente
+// // // // Cria divs nas colunas dinamicamente \\ \\ \\ \\
 for (let i=0; i < colunas.length; i++) {
     let coluna = colunas[i]
     for (let j=0; j < 6; j++) {
@@ -31,32 +31,7 @@ for (let i=0; i < colunas.length; i++) {
     }
 }
 
-// Adicionar função reset no botão
-botaoReset.addEventListener('click', function() {
-    jogoEmAndamento = true;
-
-    let coluna;
-    let filhosColuna;
-    for (let i = 0; i < colunas.length; i++) {
-            coluna = colunas[i];// coluna 0
-            filhosColuna = coluna.childNodes;// array de filhos da coluna;
-        for(let j = 0 ; j < filhosColuna.length;j++){
-            filhosColuna[j].innerText = "";
-        }
-    }
-    iniciaJogador1.innerText = "Jogador A"
-    iniciaJogador2.innerText = "Jogador B"
-    tabuleiroArray = [
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0],
-        [0,0,0,0,0,0,0]
-        ]
-})
-
-// Alternar entre jogadores (cores)
+// // // // Alternar entre jogadores (cores) \\ \\ \\ \\
 function sortearJogador() {
     let numero_aletorio = Math.ceil(Math.random()*2);// ou 1 ou 2 nunca 0
     return numero_aletorio;
@@ -74,8 +49,31 @@ const alterador =(param)=>{
 }
 alterador(jogadorAtual);
 
+// // // // Adicionar função reset no botão \\ \\ \\ \\
+botaoReset.addEventListener('click', function() {
+    jogoEmAndamento = true;
 
-// Adicionar handler de clique nas colunas
+    let coluna;
+    let filhosColuna;
+    for (let i = 0; i < colunas.length; i++) {
+            coluna = colunas[i];// coluna 0
+            filhosColuna = coluna.childNodes;// array de filhos da coluna;
+        for(let j = 0 ; j < filhosColuna.length;j++){
+            filhosColuna[j].innerText = "";
+        }
+    }
+    jogadorAtual = sortearJogador();
+    tabuleiroArray = [
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0],
+        [0,0,0,0,0,0,0]
+        ]
+})
+
+// // // // Adicionar handler de clique nas colunas \\ \\ \\ \\
 for (let i = 0; i < colunas.length; i++) {    
         
     colunas[i].addEventListener('click', (event) => {
@@ -108,14 +106,15 @@ for (let i = 0; i < colunas.length; i++) {
                     break;
                 }
             }
-            horizontal()
-            vertical()
+            horizontal();
+            vertical();
             diagonal();
+            empate();
         }
     })
 }
 
-// Verificação horizontal
+// // // // Verificação horizontal \\ \\ \\ \\
 
 const horizontal = () => {
 const bordaX = tabuleiroArray[0].length - 3;
@@ -139,7 +138,7 @@ const bordaX = tabuleiroArray[0].length - 3;
     }
 }
 
-// Verificação vertical
+// // // // Verificação vertical \\ \\ \\ \\
 
 const vertical = () => {
 const bordaY = tabuleiroArray.length - 3;
@@ -164,11 +163,9 @@ const bordaY = tabuleiroArray.length - 3;
   
 }
 
-// Verificação diagonal
+// // // // Verificação diagonal \\ \\ \\ \\
 
-//Diagonal ascendente
-
-const diagonal = () => {
+const diagonal = () => { //Diagonal ascendente
     for (let y = 0; y  <= 3; y ++) {
         for (let x = 0; x <= 3; x++) {
         let item  = tabuleiroArray[y][x];
@@ -186,11 +183,9 @@ const diagonal = () => {
         }
     }
 
-//Diagonal descendente
-
-for (let y = 3; y < tabuleiroArray.length; y ++) {
-    for (let x = 0; x <= 3; x++) {
-        item = tabuleiroArray[y][x];
+    for (let y = 3; y < tabuleiroArray.length; y ++) {  //Diagonal descendente
+        for (let x = 0; x <= 3; x++) {
+            item = tabuleiroArray[y][x];
             if (item !== 0) {
                 if (item === tabuleiroArray[y-1][x+1] && item === tabuleiroArray[y-2][x+2] && item === tabuleiroArray[y-3][x+3]) {
                     if(item === 1){
@@ -203,21 +198,23 @@ for (let y = 3; y < tabuleiroArray.length; y ++) {
                     }
                 }
             }
+        }
     }
- }
 }
 
-// const empate = () => {
-//     for(let y = 0; y < 7; y++) {
-//         for(let x = 0; x < 6; x++) {
-//             let contador = 0
-//             let item = tabuleiroArray[y][x]
-//             if (item.childElementCount == 1) {
-//                 contador++
-//             }
-//             if (contador == 42) {
-//                 alert("Empate!")
-//             }
-//         }
-//     }
-// }
+// // // // Verificação empate \\ \\ \\ \\
+
+const empate = () => {
+    let contador = 0
+    for(let y = 0; y < tabuleiroArray.length; y++) {
+        for(let x = 0; x < tabuleiroArray[y].length; x++) {
+            let item = tabuleiroArray[y][x]
+            if (item !== 0) {
+                contador += 1
+                if (contador === 42) {
+                    alert("Empate!")
+                }
+            }
+        }
+    }
+}

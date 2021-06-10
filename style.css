@@ -113,9 +113,9 @@ main #info p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 250px;
+    width: 260px;
     height: 155px;
-    background-color: rgb(194, 194, 194);
+    background-color: #f1cbb0;
     padding: 5px;
     border-radius: 5px;
 }
@@ -134,7 +134,7 @@ main #info p {
 
 #tabuleiro .boxDisco {
     width: inherit;
-    height: 21px;
+    height: 25px;
 }
 
 #discosInicio {
@@ -149,8 +149,8 @@ main #info p {
 
 .jogador1 {
     border-radius: 20px;
-    background-color: rgb(51, 158, 219);
-    border: 2px solid rgb(19, 33, 163);
+    background-color: #66B9BF;
+    border: 2px solid #006f80;
     min-width: 20px;
     min-height: 20px;
     max-width: 20px;
@@ -159,8 +159,8 @@ main #info p {
 
 .jogador2 {
     border-radius: 20px;
-    background-color: rgb(255, 150, 51);
-    border: 2px solid rgb(173, 69, 0);
+    background-color: #eb8c48;
+    border: 2px solid #E37222;
     min-width: 20px;
     min-height: 20px;
     max-width: 20px;
