@@ -230,7 +230,7 @@ let tabuleiroArray = [
     
     const diagonal = () => { //Diagonal ascendente
         for (let y = 0; y  <= 3; y ++) {
-            for (let x = 0; x <= 3; x++) {
+            for (let x = 0; x < 3; x++) {
             let item  = tabuleiroArray[y][x];
                 if (item !== 0) {
                     if (item === tabuleiroArray[y+1][x+1] && item === tabuleiroArray[y+2][x+2] && item === tabuleiroArray[y+3][x+3]) {
@@ -257,7 +257,7 @@ let tabuleiroArray = [
         }
     
         for (let y = 3; y < tabuleiroArray.length; y ++) {  //Diagonal descendente
-            for (let x = 0; x <= 3; x++) {
+            for (let x = 0; x < 3; x++) {
                 item = tabuleiroArray[y][x];
                 if (item !== 0) {
                     if (item === tabuleiroArray[y-1][x+1] && item === tabuleiroArray[y-2][x+2] && item === tabuleiroArray[y-3][x+3]) {
